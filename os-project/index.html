@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CPU Scheduler & Dining Philosophers</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <nav class="bg-blue-900 text-white p-4 flex justify-between items-center">
+    <div class="text-xl font-bold">Process Scheduler</div>
+    <div>
+      <a href="#" class="px-4">HOME</a>
+      <a href="#" class="px-4">DOCS</a>
+    </div>
+  </nav>
+
+  <main class="max-w-5xl mx-auto p-6">
+    <h2 class="text-2xl text-center font-semibold mb-6">CPU Scheduler</h2>
+    <p class="text-center mb-4">Type values into the table and the chart on the bottom will show how this runs</p>
+
+    <div class="mb-6">
+      <label class="font-semibold block mb-2">Select Algorithm:</label>
+      <select id="algorithm-select" class="p-2 border rounded w-full max-w-xs">
+        <option value="fcfs">FCFS</option>
+        <option value="sjf">SJF</option>
+        <option value="srtf">SRTF</option>
+        <option value="rr">Round Robin</option>
+        <option value="priority">Priority</option>
+        <option value="dining">Dining Philosophers</option>
+      </select>
+    </div>
+
+    <div id="input-section">
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full table-auto border text-center" id="input-table">
+          <thead class="bg-red-100">
+            <tr>
+              <th class="border p-2">Process</th>
+              <th class="border p-2">Arrival Time</th>
+              <th class="border p-2">Burst Time</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            <tr><td class="border">P1</td><td class="border"><input value="0" class="w-20 text-center" /></td><td class="border"><input value="5" class="w-20 text-center" /></td></tr>
+            <tr><td class="border">P2</td><td class="border"><input value="1" class="w-20 text-center" /></td><td class="border"><input value="3" class="w-20 text-center" /></td></tr>
+            <tr><td class="border">P3</td><td class="border"><input value="2" class="w-20 text-center" /></td><td class="border"><input value="1" class="w-20 text-center" /></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-gray-100 p-4 rounded shadow">
+        <div>
+          <label class="font-semibold block mb-2">Context Switch Time:</label>
+          <input type="number" id="context-switch" value="0" step="0.1" min="0" class="border w-full p-2 rounded" />
+          <div id="quantum-input" class="mt-4 hidden">
+            <label class="font-semibold block mb-2">Quantum Time:</label>
+            <input id="quantum-time" type="number" value="2" min="1" class="border p-2 w-full" />
+          </div>
+        </div>
+        <div class="flex flex-col justify-center items-center">
+          <button id="run-btn" class="bg-green-600 text-white px-6 py-2 rounded my-2">Run</button>
+          <button id="reset-btn" class="bg-green-600 text-white px-6 py-2 rounded">Reset</button>
+        </div>
+      </div>
+
+      <div class="my-8">
+        <h3 class="text-xl font-semibold mb-2">Gantt Chart</h3>
+        <div id="chart" class="flex items-center space-x-1"></div>
+      </div>
+
+      <div class="my-8">
+        <h3 class="text-2xl font-bold text-center">Output Table</h3>
+        <table class="w-full mt-4 border text-center">
+          <thead class="bg-blue-200">
+            <tr>
+              <th class="border p-2">Process</th>
+              <th class="border p-2">Arrival Time</th>
+              <th class="border p-2">Burst Time</th>
+              <th class="border p-2">Completion Time</th>
+              <th class="border p-2">Turnaround Time</th>
+              <th class="border p-2">Waiting Time</th>
+            </tr>
+          </thead>
+          <tbody id="output-table" class="bg-white"></tbody>
+        </table>
+      </div>
+
+      <div class="mt-6 text-lg">
+        <p><strong>CPU Utilization:</strong> <span id="cpu-util"></span></p>
+        <p><strong>Average waiting time:</strong> <span id="avg-wt"></span></p>
+        <p><strong>Average turnaround time:</strong> <span id="avg-tat"></span></p>
+      </div>
+
+      <div class="mt-8 text-center">
+        <button class="bg-red-500 text-white px-6 py-2 rounded">Show Explanation</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+/* style.css - light theme enhancements */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafb;
+  color: #1f2937;
+}
+
+input[type="number"],
+input[type="text"],
+select {
+  background-color: #ffffff;
+  border-color: #cbd5e0;
+  transition: border-color 0.2s;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.25);
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+#chart div {
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 0;
+  transform: scale(0.95);
+  animation: fadeInScale 0.4s ease forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes fadeInScale {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Gantt chart process blocks */
+#chart span.process {
+  padding: 0.5rem 1rem;
+  color: white;
+  border-radius: 0.25rem;
+  font-weight: 600;
+}
+
+/* Table Styling */
+table th, table td {
+  text-align: center;
+  padding: 0.5rem;
+  border: 1px solid #e5e7eb;
+}
+
+/* Explanation Button */
+button.bg-red-500:hover {
+  @apply bg-red-600;
+}
+/* Dining Philosophers Visualizer Styles */
+.container {
+  margin-top: 20px;
+}
+
+#circle {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin: 40px auto;
+  background: #fff;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+}
+
+.philosopher {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: gray;
+  border-radius: 50%;
+  color: white;
+  line-height: 40px;
+  font-weight: bold;
+  transform: translate(-50%, -50%);
+  transition: background 0.5s;
+}
+
+.philosopher.thinking {
+  background-color: #3498db;
+}
+
+.philosopher.eating {
+  background-color: #2ecc71;
+}
+
+.philosopher.waiting {
+  background-color: #f39c12;
+}
+
+.chopstick {
+  position: absolute;
+  width: 10px;
+  height: 20px;
+  color: black;
+  font-weight: bold;
+  transform: translate(-50%, -50%);
+  transition: color 0.5s;
+}
+
+.chopstick.taken {
+  color: red;
+}
+.chopstick.free {
+  color: green;
+}
+
